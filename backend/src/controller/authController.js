@@ -3,13 +3,16 @@ import prisma from '../../prismaClient.js';
 import generateToken from '../utils/generateToken.js';
 
 export const register = async (req, res) => {
-  const { name, email, password } = req.body;
+  const { name, lastName, email, password } = req.body;
+
+  console.log(req.body);
 
   try {
     const hashedPassword = await bcrypt.hash(password, 10);
     const user = await prisma.user.create({
       data: {
         name,
+        lastName,
         email,
         password: hashedPassword,
       },

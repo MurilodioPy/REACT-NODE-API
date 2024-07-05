@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import axios from '../../../api/axiosConfig';
-import styles from './editeventos.module.css';
+import styles from './editatividade.module.css';
 
 export default function EditEventos(){
     const { id } = useParams();

@@ -22,6 +22,8 @@ const getAll = async (req, res) => {
 const create = async (req, res) => {
   const { description, userId, categoryId } = req.body;
 
+  console.log(req.body);
+
   if (!description || !userId || !categoryId) {
     return res.status(UNPROCESSABLE_ENTITY).send({ error: 'Todos os campos são obrigatórios' });
   }

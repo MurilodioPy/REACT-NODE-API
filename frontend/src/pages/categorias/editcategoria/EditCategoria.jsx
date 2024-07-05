@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import axios from '../api/axios';
+import axios from '../../../api/axiosConfig';
 
 const EditCategory = () => {
     const { id } = useParams();

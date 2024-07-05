@@ -1,51 +1,32 @@
 import pkg from 'http-status';
-const { OK, UNPROCESSABLE_ENTITY, CREATED } = pkg;
+const { OK, UNPROCESSABLE_ENTITY } = pkg;
 
 import prisma from '../../prismaClient.js';
 
-const getAll = async (req, res) => {
+export const getUserById = async (req, res) => {
   try {
-    const users = await prisma.user.findMany();
-    return res.status(OK).send(users);
-  } catch (err) {
-    console.error(err);
-    return res.status(UNPROCESSABLE_ENTITY).send({ error: 'Erro ao buscar usuários' });
-  }
-};
-
-const create = async (req, res) => {
-  const { firstName, lastName } = req.body;
-
-  if (!firstName || !lastName) {
-    return res.status(UNPROCESSABLE_ENTITY).send({ error: 'Nome e sobrenome são obrigatórios' });
-  }
-
-  try {
-    const user = await prisma.user.create({
-      data: {
-        firstName,
-        lastName,
-      },
+    const { id } = req.params;
+    const user = await prisma.user.findUnique({
+      where: { id: parseInt(id) },
     });
-
-    return res.status(CREATED).send(user);
+    res.status(OK).send(user);
   } catch (error) {
     console.error(error);
-    return res.status(UNPROCESSABLE_ENTITY).send({ error: 'Erro ao criar usuário' });
+    res.status(UNPROCESSABLE_ENTITY).send("Erro na requisição");
   }
 };
 
 const update = async (req, res) => {
   const { id } = req.params;
-  const { firstName, lastName } = req.body;
+  const { name, lastName } = req.body;
 
-  if (!firstName || !lastName) {
+  if (!name || !lastName) {
     return res.status(UNPROCESSABLE_ENTITY).send({ error: 'Nome e sobrenome são obrigatórios' });
   }
 
   try {
     const user = await prisma.user.update({
-      data: { firstName, lastName },
+      data: { name, lastName },
       where: { id: parseInt(id) },
     });
 
@@ -71,4 +52,4 @@ const deleteEntity = async (req, res) => {
   }
 };
 
-export default { getAll, create, update, deleteEntity };
+export default { getUserById, update, deleteEntity };

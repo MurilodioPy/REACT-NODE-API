@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import axios from '../api/axios';
-import DeleteCategory from './DeleteCategory';
+import axios from '../../../api/axiosConfig.js';
+import DeleteCategory from '../../../components/deletecategoria/deleteCategoria.jsx';
 import styles from './listcategoria.module.css';
 
 const ListCategories = () => {
@@ -27,7 +27,7 @@ const ListCategories = () => {
     return (
         <div className={styles.containerList}>
             <h1>Categorias</h1>
-            <Link to="/addCategory">Adicionar Categoria</Link>
+            <Link to="/addCategoria">Adicionar Categoria</Link>
             <ul>
                 {categories.map(category => (
                     <li key={category.id}>
