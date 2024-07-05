@@ -1,0 +1,11 @@
+src/
+  ├─ controllers/
+  │     ├─ authController.js
+  ├─ routes/
+  │     ├─ authRoutes.js
+  ├─ middlewares/
+  │     ├─ authMiddleware.js
+  ├─ utils/
+  │     ├─ generateToken.js
+  ├─ server.js
+  ├─ prismaClient.js

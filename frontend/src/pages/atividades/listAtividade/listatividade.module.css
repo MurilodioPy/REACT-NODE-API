@@ -1,0 +1,7 @@
+.containerList{
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    justify-content: center;
+    background-color: #222;
+}
