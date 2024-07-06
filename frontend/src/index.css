@@ -10,11 +10,12 @@
 }
 
 body{
-  background-color: #00AFEF;
+  background-color: #222;
 }
 
 a{
   color: #EEEEEE;
+  cursor: pointer;
 }
 
 button{

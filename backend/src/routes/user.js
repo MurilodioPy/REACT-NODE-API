@@ -4,7 +4,7 @@ import authMiddleware from '../middlewares/authMiddlewares.js'
 
 const router = Router();
 
-router.get('/', authMiddleware, userController.getUserById);
+router.get('/:id', authMiddleware, userController.getUserById);
 router.put('/:id', authMiddleware, userController.update);
 router.delete('/:id', authMiddleware, userController.deleteEntity);
 

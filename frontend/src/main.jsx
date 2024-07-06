@@ -12,6 +12,8 @@ import AddAtividades from './pages/atividades/addatividade/AddAtividade.jsx'
 import ListCategoria from './pages/categorias/listcategoria/ListCategoria.jsx'
 import AddCategoria from './pages/categorias/addcategoria/AddCategoria.jsx'
 import EditCategoria from './pages/categorias/editcategoria/EditCategoria.jsx'
+import Profile from './pages/usuarios/profile/Profile.jsx'
+import UpdateUser from './pages/usuarios/updateuser/UpdateUser.jsx'
 
 const pages = createBrowserRouter([
   {
@@ -20,6 +22,8 @@ const pages = createBrowserRouter([
     children: [
       { path: '/login', element: <Login /> },
       { path: '/newUser', element: <AddUser /> },
+      { path: '/profile', element: <Profile /> },
+      { path: '/editUsuario/:id', element: <ProtectedRoute><UpdateUser /></ProtectedRoute> },
       { path: '/', element: <ProtectedRoute><ListAtividades /></ProtectedRoute> },
       { path: '/editAtividade/:id', element: <ProtectedRoute><EditAtividade /></ProtectedRoute> },
       { path: '/addAtividade', element: <ProtectedRoute><AddAtividades /></ProtectedRoute> },

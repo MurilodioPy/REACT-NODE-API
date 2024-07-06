@@ -15,8 +15,8 @@ import category from './src/routes/category.js';
 import activity from './src/routes/activity.js';
 import user from './src/routes/user.js';
 import authRoutes from './src/routes/authRoutes.js';
-import dotenv from 'dotenv';
-dotenv.config();
+// import dotenv from 'dotenv';
+// dotenv.config();
 
 app.use(cors());
 app.use(helmet());

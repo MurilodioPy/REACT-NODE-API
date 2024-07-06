@@ -1,41 +1,51 @@
 import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
-import axios from '../api/axios';
-import UpdateUser from './UpdateUser';
-import DeleteUser from './DeleteUser';
+import { Navigate, Link } from 'react-router-dom';
+import axios from '../../../api/axiosConfig.js';
+// import UpdateUser from './UpdateUser';
+import DeleteUser from '../../../components/deleteuser/deleteUser.jsx';
 import styles from './profile.module.css';
 
 const UserProfile = () => {
     const [user, setUser] = useState({});
-    const navigate = useNavigate();
-    const userId = localStorage.getItem('userId'); // Assumindo que o ID do usuário está salvo no localStorage após o login
+    const userId = localStorage.getItem('userId'); 
+    const [error, setError] = useState('');
 
     useEffect(() => {
         const fetchUser = async () => {
             try {
                 const response = await axios.get(`/usuario/${userId}`);
                 setUser(response.data);
+                // console.log(response.data);
             } catch (error) {
                 console.error(error.response?.data || error.message);
             }
         };
-
         fetchUser();
     }, [userId]);
 
-    const handleDelete = () => {
-        localStorage.removeItem('userId');
-        navigate('/login');
+    const deleteUser = async (id) => {
+        try {
+          await axios.delete(`/usuario/${id}`);
+          setUsuario({});
+        } catch (error) {
+          setError('Erro ao deletar usuário. Por favor, tente novamente mais tarde.');
+          console.error('Erro ao deletar usuário:', error);
+        }
     };
 
+    if (error) {
+        return <p>{error}</p>;
+    }
+    
     return (
         <div className={styles.container}>
             <h1>Perfil do Usuário</h1>
             <div className={styles.profileInfo}>
-                <p><strong>Nome:</strong> {user.firstName} {user.lastName}</p>
+                <p><strong>Nome :</strong> {user.name} {user.lastName}</p>
+                <p><strong>Email:</strong> {user.email}</p>
             </div>
-            <UpdateUser user={user} setUser={setUser} />
-            <DeleteUser userId={userId} onDelete={handleDelete} />
+            <Link to={`/editUsuario/${user.id}`}>Editar</Link>
+            <DeleteUser userId={userId} onDelete={deleteUser} />
         </div>
     );
 };
