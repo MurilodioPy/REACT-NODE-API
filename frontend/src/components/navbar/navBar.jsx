@@ -25,9 +25,7 @@ export default function NavBar() {
                         Categorias
                     </Link>
 
-                    
                     <LogOut />
-
                 </div>
             </div>
 

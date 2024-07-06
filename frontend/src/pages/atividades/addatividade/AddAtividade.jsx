@@ -6,7 +6,7 @@ const AddActivity = () => {
     const [categories, setCategories] = useState([]);
     const [selectedCategory, setSelectedCategory] = useState(0);
     const userId = localStorage.getItem('userId'); // Obtendo o usuário logado
-    console.log("USERID:" + userId);
+    
 
     useEffect(() => {
         const fetchCategories = async () => {

@@ -19,6 +19,19 @@ const getAll = async (req, res) => {
   }
 };
 
+const getById = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const atividade = await prisma.activity.findUnique({
+      where: { id: parseInt(id) },
+    });
+    res.status(OK).send(atividade);
+  } catch (error) {
+    console.error(error);
+    res.status(UNPROCESSABLE_ENTITY).send("Erro ao buscar atividade");
+  }
+};
+
 const create = async (req, res) => {
   const { description, userId, categoryId } = req.body;
 
@@ -79,4 +92,4 @@ const deleteEntity = async (req, res) => {
   }
 };
 
-export default { getAll, create, update, deleteEntity };
+export default { getById, getAll, create, update, deleteEntity };

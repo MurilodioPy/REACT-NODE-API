@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import axios from '../../../api/axiosConfig.js';
 import styles from './editatividade.module.css';
 
 export default function EditAtividades(){
     const { id } = useParams();
-    const history = useNavigate();
     const [atividade, setAtividade] = useState({
         description: ''
     });
+
     const [error, setError] = useState('');
 
     useEffect(() => {
@@ -26,8 +26,7 @@ export default function EditAtividades(){
     }, [id]);
 
     const handleChange = (e) => {
-        const { description, value } = e.target;
-        setAtividade({ ...atividade, [description]: value });
+        setAtividade({ ...atividade, [e.target.name]: e.target.value });
     };
 
     const handleSubmit = async (e) => {
@@ -35,7 +34,6 @@ export default function EditAtividades(){
         try {
             const response = await axios.put(`/atividade/${id}`, atividade);
             console.log('Atividade atualizada com sucesso:', response.data);
-            history.push('/atividade');
         } catch (error) {
             console.error('Erro ao atualizar o atividade:', error);
             setError('Erro ao atualizar o atividade. Por favor, tente novamente mais tarde.');

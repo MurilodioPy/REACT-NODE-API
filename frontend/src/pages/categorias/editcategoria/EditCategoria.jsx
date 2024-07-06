@@ -10,7 +10,7 @@ const EditCategory = () => {
     useEffect(() => {
         const fetchCategory = async () => {
             try {
-                const response = await axios.get(`/categories/${id}`);
+                const response = await axios.get(`/categoria/${id}`);
                 setDescription(response.data.description);
             } catch (error) {
                 console.error(error.response?.data || error.message);

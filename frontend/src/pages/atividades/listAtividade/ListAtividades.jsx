@@ -52,7 +52,7 @@ export default function Listatividades() {
         atividades.map(atividade => (
           <li key={atividade.id}>
             {atividade.description}
-            <Link to={`/editAtiviade/${atividade.id}`}>Editar</Link>
+            <Link to={`/editAtividade/${atividade.id}`}>Editar</Link>
             <DeleteAtividade id={atividade.id} onDelete={deleteAtividade} />
           </li>
         ))

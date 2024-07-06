@@ -21,11 +21,11 @@ const pages = createBrowserRouter([
       { path: '/login', element: <Login /> },
       { path: '/newUser', element: <AddUser /> },
       { path: '/', element: <ProtectedRoute><ListAtividades /></ProtectedRoute> },
-      { path: '/editAtividade', element: <ProtectedRoute><EditAtividade /></ProtectedRoute> },
+      { path: '/editAtividade/:id', element: <ProtectedRoute><EditAtividade /></ProtectedRoute> },
       { path: '/addAtividade', element: <ProtectedRoute><AddAtividades /></ProtectedRoute> },
       { path: '/categorias', element: <ProtectedRoute><ListCategoria /></ProtectedRoute> },
       { path: '/addCategoria', element: <ProtectedRoute><AddCategoria /></ProtectedRoute> },
-      { path: '/editCategoria', element: <ProtectedRoute><EditCategoria /></ProtectedRoute> },
+      { path: '/editCategoria/:id', element: <ProtectedRoute><EditCategoria /></ProtectedRoute> },
     ]
   }
 ]);
