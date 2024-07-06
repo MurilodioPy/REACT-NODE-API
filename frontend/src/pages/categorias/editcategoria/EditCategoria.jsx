@@ -2,44 +2,59 @@ import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import axios from '../../../api/axiosConfig';
 
-const EditCategory = () => {
+export default function EditCategory() {
     const { id } = useParams();
-    const [description, setDescription] = useState('');
-    const navigate = useNavigate();
+    const [categoria, setCategoria] = useState({
+        description: ''
+    });
+
+    const [error, setError] = useState('');
 
     useEffect(() => {
-        const fetchCategory = async () => {
+        const fetchCategoria = async () => {
             try {
                 const response = await axios.get(`/categoria/${id}`);
-                setDescription(response.data.description);
+                setCategoria(response.data);
             } catch (error) {
-                console.error(error.response?.data || error.message);
+                console.error('Erro ao buscar a categoria:', error);
+                setError('Erro ao carregar o categoria. Por favor, tente novamente mais tarde.');
             }
         };
-        fetchCategory();
+        fetchCategoria();
     }, [id]);
+
+    const handleChange = (e) => {
+        setCategoria({ ...categoria, [e.target.name]: e.target.value });
+    };
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            await axios.put(`/categories/edit/${id}`, { description });
-            navigate('/');
+            const response = await axios.put(`/categoria/${id}`, categoria);
+            console.log('Categoria atualizada com sucesso:', response.data);
         } catch (error) {
-            console.error(error.response?.data || error.message);
+            console.error('Erro ao atualizar o atividade:', error);
+            setError('Erro ao atualizar a categoria. Por favor, tente novamente mais tarde.');
         }
     };
 
     return (
-        <form onSubmit={handleSubmit}>
-            <input
-                type="text"
-                placeholder="Descrição"
-                value={description}
-                onChange={(e) => setDescription(e.target.value)}
-            />
-            <button type="submit">Atualizar Categoria</button>
-        </form>
+        <div>
+            <h1>Editar Categoria</h1>
+            {error && <p>{error}</p>}
+            <form onSubmit={handleSubmit}>
+                <div>
+                    <label>Descrição da categoria:</label>
+                <input
+                    type="text"
+                    name="description"
+                    value={categoria.description}
+                    onChange={handleChange}
+                    required
+                    />
+                </div>
+                <button type="submit">Atualizar</button>
+            </form>
+        </div>
     );
 };
-
-export default EditCategory;

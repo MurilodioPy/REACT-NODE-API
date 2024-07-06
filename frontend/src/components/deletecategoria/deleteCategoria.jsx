@@ -1,19 +1,13 @@
 import React from 'react';
-import axios from '../../api/axiosConfig.js';
 
 const DeleteCategory = ({ id, onDelete }) => {
-    const handleDelete = async () => {
-        try {
-            await axios.delete(`/categoria/${id}`);
-            onDelete(id);
-        } catch (error) {
-            console.error(error.response?.data || error.message);
-        }
-    };
-
     return (
-        <button onClick={handleDelete}>Excluir</button>
+      <div className="modal">
+        <div className="modal-content">
+          <button onClick={() => onDelete(id)}>Delete</button>
+        </div>
+      </div>
     );
-};
-
-export default DeleteCategory;
+  };
+  
+  export default DeleteCategory;

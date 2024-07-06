@@ -12,17 +12,17 @@ export default function EditAtividades(){
     const [error, setError] = useState('');
 
     useEffect(() => {
-        const fetchEvento = async () => {
+        const fetchAtividade = async () => {
             try {
                 const response = await axios.get(`/atividade/${id}`);
                 setAtividade(response.data);
             } catch (error) {
-                console.error('Erro ao buscar o atividade:', error);
+                console.error('Erro ao buscar a atividade:', error);
                 setError('Erro ao carregar o atividade. Por favor, tente novamente mais tarde.');
             }
         };
 
-        fetchEvento();
+        fetchAtividade();
     }, [id]);
 
     const handleChange = (e) => {
@@ -36,7 +36,7 @@ export default function EditAtividades(){
             console.log('Atividade atualizada com sucesso:', response.data);
         } catch (error) {
             console.error('Erro ao atualizar o atividade:', error);
-            setError('Erro ao atualizar o atividade. Por favor, tente novamente mais tarde.');
+            setError('Erro ao atualizar a atividade. Por favor, tente novamente mais tarde.');
         }
     };
 

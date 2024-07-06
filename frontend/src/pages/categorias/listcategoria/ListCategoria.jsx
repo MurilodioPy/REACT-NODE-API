@@ -5,13 +5,13 @@ import DeleteCategory from '../../../components/deletecategoria/deleteCategoria.
 import styles from './listcategoria.module.css';
 
 const ListCategories = () => {
-    const [categories, setCategories] = useState([]);
+    const [categorias, setCategorias] = useState([]);
 
     useEffect(() => {
         const fetchCategories = async () => {
             try {
-                const response = await axios.get('/categoria/');
-                setCategories(response.data);
+                const response = await axios.get('/categoria');
+                setCategorias(response.data);
             } catch (error) {
                 console.error(error.response?.data || error.message);
             }
@@ -20,8 +20,14 @@ const ListCategories = () => {
         fetchCategories();
     }, []);
 
-    const deleteCategory = (id) => {
-        setCategories(categories.filter(category => category.id !== id));
+    const deleteCategoria = async (id) => {
+        try {
+            await axios.delete(`/categoria/${id}`);
+            setAtividades(categorias.filter(categoria => categoria.id !== id));
+        } catch (error) {
+            setError('Erro ao deletar categoria. Por favor, tente novamente mais tarde.');
+            console.error('Erro ao deletar categoria:', error);
+        }
     };
 
     return (
@@ -29,11 +35,11 @@ const ListCategories = () => {
             <h1>Categorias</h1>
             <Link to="/addCategoria">Adicionar Categoria</Link>
             <ul>
-                {categories.map(category => (
+                {categorias.map(category => (
                     <li key={category.id}>
                         {category.description}
                         <Link to={`/editCategoria/${category.id}`}>Editar</Link>
-                        <DeleteCategory id={category.id} onDelete={deleteCategory} />
+                        <DeleteCategory id={category.id} onDelete={deleteCategoria} />
                     </li>
                 ))}
             </ul>
