@@ -1,13 +1,10 @@
 import React from 'react';
 
-const DeleteAtividade = ({ atividade, onDelete, onCancel }) => {
+const DeleteAtividade = ({ id, onDelete }) => {
   return (
     <div className="modal">
       <div className="modal-content">
-        <h2>Confirma</h2>
-        <p>Você gostaria de deletar: "{atividade.description}"?</p>
-        <button onClick={() => onDelete(atividade.id)}>Sim, Delete</button>
-        <button onClick={onCancel}>Cancelar</button>
+        <button onClick={() => onDelete(id)}>Delete</button>
       </div>
     </div>
   );

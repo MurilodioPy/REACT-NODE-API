@@ -4,7 +4,7 @@ import axios from '../../../api/axiosConfig.js';
 const AddActivity = () => {
     const [description, setDescription] = useState('');
     const [categories, setCategories] = useState([]);
-    const [selectedCategory, setSelectedCategory] = useState('');
+    const [selectedCategory, setSelectedCategory] = useState(0);
     const userId = localStorage.getItem('userId'); // Obtendo o usuário logado
     console.log("USERID:" + userId);
 
@@ -25,8 +25,8 @@ const AddActivity = () => {
         try {
             const response = await axios.post('/atividade/', {
                 description,
-                userId,
-                categoryId: selectedCategory,
+                userId: parseInt(userId),
+                categoryId: parseInt(selectedCategory),
             });
             console.log(response.data);
         } catch (error) {

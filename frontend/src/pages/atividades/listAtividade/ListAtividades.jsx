@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
 import { Link } from 'react-router-dom';
 import styles from './listatividade.module.css';
 import DeleteAtividade from '../../../components/deleteatividade/deleteAtividade';
+import axios from '../../../api/axiosConfig.js';
 
 export default function Listatividades() {
   const [atividades, setAtividades] = useState([]);

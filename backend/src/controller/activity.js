@@ -22,8 +22,6 @@ const getAll = async (req, res) => {
 const create = async (req, res) => {
   const { description, userId, categoryId } = req.body;
 
-  console.log(req.body);
-
   if (!description || !userId || !categoryId) {
     return res.status(UNPROCESSABLE_ENTITY).send({ error: 'Todos os campos são obrigatórios' });
   }
@@ -31,30 +29,31 @@ const create = async (req, res) => {
   try {
     const activity = await prisma.activity.create({
       data: {
-        description: req.body.description,
-        userId: req.body.userId, // O usuário logado
-        categoryId: req.body.categoryId,
+        description: description,
+        userId: userId, // O usuário logado
+        categoryId: categoryId,
       },
     });
 
     return res.status(CREATED).send(activity);
   } catch (e) {
     console.error(e);
+    console.log(e);
     return res.status(UNPROCESSABLE_ENTITY).send({ error: 'Erro ao criar atividade' });
   }
 };
 
 const update = async (req, res) => {
   const { id } = req.params;
-  const { description, userId, categoryId } = req.body;
+  const { description } = req.body;
 
-  if (!id || !description || !userId || !categoryId) {
-    return res.status(UNPROCESSABLE_ENTITY).send({ error: 'Todos os campos são obrigatórios' });
+  if (!description) {
+    return res.status(UNPROCESSABLE_ENTITY).send({ error: 'Descrição obrigatória' });
   }
 
   try {
     const activity = await prisma.activity.update({
-      data: { description, userId, categoryId },
+      data: { description },
       where: { id: parseInt(id) },
     });
 
