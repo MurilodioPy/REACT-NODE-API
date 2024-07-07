@@ -8,7 +8,8 @@ const AddActivity = () => {
     const [description, setDescription] = useState('');
     const [categories, setCategories] = useState([]);
     const [selectedCategory, setSelectedCategory] = useState(0);
-    const userId = localStorage.getItem('userId'); // Obtendo o usuário logado
+    const userId = localStorage.getItem('userId'); 
+    const [error, setError] = useState('');
 
 
     useEffect(() => {
@@ -34,6 +35,7 @@ const AddActivity = () => {
             navigate('/');
             console.log(response.data);
         } catch (error) {
+            setError('Erro ao adicionar atividade. Por favor, tente novamente mais tarde.');
             console.error(error.response?.data || error.message);
         }
     };

@@ -22,7 +22,7 @@ const Register = () => {
             });
             console.log(response.data); // Exibir a resposta do backend
         } catch (error) {
-            setError(error.response?.data || error.message); // Exibir o erro ao usuário
+            setError("Erro ao inserir usuário! Usuário já existe!"); // Exibir o erro ao usuário
             console.error(error.response?.data || error.message);
         }
     };

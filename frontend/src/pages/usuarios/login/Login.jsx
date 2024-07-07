@@ -20,7 +20,7 @@ const Login = () => {
             localStorage.setItem('userId', response.data.userId); // Armazena o token no localStorage
             setIsLoggedIn(true); // Atualiza o estado para indicar que o login foi bem-sucedido
         } catch (error) {
-            setError(error.response?.data || error.message); // Exibir o erro ao usuário
+            setError("Erro ao fazer login!"); // Exibir o erro ao usuário
             console.error(error.response?.data || error.message);
         }
     };
