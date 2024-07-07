@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from '../../../api/axiosConfig';
+import styles from './editcategoria.module.css';
 
 export default function EditCategory() {
     const { id } = useParams();
@@ -39,19 +40,19 @@ export default function EditCategory() {
     };
 
     return (
-        <div>
-            <h1>Editar Categoria</h1>
+        <div className={styles.container}>
+            <h2>Editar Categoria</h2>
             {error && <p>{error}</p>}
             <form onSubmit={handleSubmit}>
-                <div>
-                    <label>Descrição da categoria:</label>
-                <input
-                    type="text"
-                    name="description"
-                    value={categoria.description}
-                    onChange={handleChange}
-                    required
-                    />
+                <div className='labelContainer'>
+                    <label>Descrição:</label>
+                    <input
+                        type="text"
+                        name="description"
+                        value={categoria.description}
+                        onChange={handleChange}
+                        required
+                        />
                 </div>
                 <button type="submit">Atualizar</button>
             </form>

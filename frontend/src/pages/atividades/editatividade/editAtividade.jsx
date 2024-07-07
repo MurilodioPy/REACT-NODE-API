@@ -42,10 +42,10 @@ export default function EditAtividades(){
 
     return (
         <div className={styles.editContainer}>
-            <h1>Editar Atividade</h1>
+            <h2>Editar Atividade</h2>
             {error && <p>{error}</p>}
             <form onSubmit={handleSubmit}>
-                <div>
+                <div className='labelContainer'>
                     <label>Descrição da atividade:</label>
                     <input
                         type="text"

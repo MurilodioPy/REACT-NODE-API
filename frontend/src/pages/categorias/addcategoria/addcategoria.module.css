@@ -1,7 +1,7 @@
-.editContainer{
+.container{
     display: flex;
     flex-direction: column;
-    padding: 20px;
     align-items: center;
-    text-align: center;
+    justify-content: center;
+    margin-top: 50px;
 }
