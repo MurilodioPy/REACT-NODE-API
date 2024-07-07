@@ -2,7 +2,6 @@ import styles from './navbar.module.css';
 import { MdEventAvailable } from "react-icons/md";
 import { TbCategory2 } from "react-icons/tb";
 import { Link } from 'react-router-dom';
-// import LogOut from '../../pages/usuarios/logout/LogOut';
 import { CgProfile } from "react-icons/cg";
 
 export default function NavBar() {
@@ -30,9 +29,6 @@ export default function NavBar() {
                         <CgProfile />
                     </Link>
 
-
-
-                    {/* <LogOut /> */}
                 </div>
             </div>
 
