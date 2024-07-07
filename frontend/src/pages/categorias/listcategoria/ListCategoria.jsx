@@ -3,14 +3,16 @@ import { Link } from 'react-router-dom';
 import axios from '../../../api/axiosConfig.js';
 import DeleteCategory from '../../../components/deletecategoria/deleteCategoria.jsx';
 import styles from './listcategoria.module.css';
+import { MdModeEdit } from "react-icons/md";
 
 const ListCategories = () => {
     const [categorias, setCategorias] = useState([]);
+    const userId = localStorage.getItem('userId');
 
     useEffect(() => {
         const fetchCategories = async () => {
             try {
-                const response = await axios.get('/categoria');
+                const response = await axios.get(`/categoria`);
                 setCategorias(response.data);
             } catch (error) {
                 console.error(error.response?.data || error.message);
@@ -34,19 +36,19 @@ const ListCategories = () => {
         <div className={styles.containerList}>
             <div className={styles.containerTitle}>
                 <h2>Categorias</h2>
-                <button>
-                    <Link to="/addCategoria">Adicionar Categoria</Link>
-                </button>
+                
+                <Link to="/addCategoria">Adicionar Categoria</Link>
+                
             </div>
             <ul>
                 {categorias.map(category => (
                     <li key={category.id}>
                         {category.description}
                         <div className={styles.buttons}>
-                            <button>
-                                <Link to={`/editCategoria/${category.id}`}>Editar</Link>
-                            </button>
                             <DeleteCategory id={category.id} onDelete={deleteCategoria} />
+                            <Link to={`/editCategoria/${category.id}`}>
+                                <MdModeEdit />
+                            </Link>
                         </div>
                     </li>
                 ))}

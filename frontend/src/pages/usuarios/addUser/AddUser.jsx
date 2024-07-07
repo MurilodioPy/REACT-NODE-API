@@ -55,9 +55,9 @@ const Register = () => {
                 />
                 <button type="submit">Registrar</button>
             </form>
-            <button>
-                <Link to='/login'>Login</Link>
-            </button>
+            
+            <Link to='/login'>Login</Link>
+            
         </div>
     );
 };

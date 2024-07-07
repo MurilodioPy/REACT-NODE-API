@@ -1,15 +1,17 @@
 import React, { useState } from 'react';
 import axios from '../../../api/axiosConfig.js';
 import styles from './addcategoria.module.css';
+import { useNavigate } from 'react-router-dom';
 
 const AddCategory = () => {
+    const navigate = useNavigate();
     const [description, setDescription] = useState('');
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
             const response = await axios.post('/categoria/', { description });
-            console.log(response.data);
+            navigate("/categorias");
         } catch (error) {
             console.error(error.response?.data || error.message);
         }

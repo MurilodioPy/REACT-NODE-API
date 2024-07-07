@@ -5,7 +5,9 @@ import prisma from '../../prismaClient.js';
 
 const getAll = async (req, res) => {
   try {
+    const { userId } = req.params;
     const activities = await prisma.activity.findMany({
+      where: { userId: parseInt(userId) },
       include: {
         user: true,
         category: true,

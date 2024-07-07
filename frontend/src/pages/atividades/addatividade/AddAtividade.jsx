@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import axios from '../../../api/axiosConfig.js';
 import styles from './addatividade.module.css'
+import { useNavigate } from 'react-router-dom';
 
 const AddActivity = () => {
+    const navigate = useNavigate();
     const [description, setDescription] = useState('');
     const [categories, setCategories] = useState([]);
     const [selectedCategory, setSelectedCategory] = useState(0);
@@ -29,6 +31,7 @@ const AddActivity = () => {
                 userId: parseInt(userId),
                 categoryId: parseInt(selectedCategory),
             });
+            navigate('/');
             console.log(response.data);
         } catch (error) {
             console.error(error.response?.data || error.message);

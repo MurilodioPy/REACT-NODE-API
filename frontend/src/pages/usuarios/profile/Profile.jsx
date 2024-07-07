@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import { Navigate, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import axios from '../../../api/axiosConfig.js';
 import LogOut from '../../../components/logout/LogOut.jsx';
 import DeleteUser from '../../../components/deleteuser/deleteUser.jsx';
 import styles from './profile.module.css';
+import { MdModeEdit } from "react-icons/md";
 
 const UserProfile = () => {
     const [user, setUser] = useState({});
@@ -45,10 +46,8 @@ const UserProfile = () => {
                 <p><strong>Email:</strong> {user.email}</p>
             </div>
             <div className={styles.buttons}>
-                <button>
-                    <Link to={`/editUsuario/${user.id}`}>Editar</Link>
-                </button>
                 <DeleteUser userId={userId} onDelete={deleteUser} />
+                <Link to={`/editUsuario/${user.id}`}><MdModeEdit /></Link>
             </div>
                 <LogOut />
         </div>

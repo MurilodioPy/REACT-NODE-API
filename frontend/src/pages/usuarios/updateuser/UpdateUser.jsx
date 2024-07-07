@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import axios from '../../../api/axiosConfig.js';
 import styles from './update.module.css';
 
 export default function UpdateUser() {
+    const navigate = useNavigate();
     const { id } = useParams();
     const [usuario, setUsuario] = useState({
         name: '',
@@ -35,6 +36,7 @@ export default function UpdateUser() {
         try {
             const response = await axios.put(`/usuario/${id}`, usuario);
             console.log('Usuário atualizado com sucesso:', response.data);
+            navigate('/profile');
         } catch (error) {
             console.error('Erro ao atualizar o usuário:', error);
             setError('Erro ao atualizar o usuário. Por favor, tente novamente mais tarde.');

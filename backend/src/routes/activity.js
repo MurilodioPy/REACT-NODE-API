@@ -5,7 +5,7 @@ import authMiddleware from '../middlewares/authMiddlewares.js'
 
 const router = Router();
 
-router.get('/', authMiddleware, activityController.getAll);
+router.get('/all/:userId', authMiddleware, activityController.getAll);
 router.get('/:id', authMiddleware, activityController.getById);
 router.post('/', authMiddleware, activityController.create);
 router.put('/:id', authMiddleware, activityController.update);

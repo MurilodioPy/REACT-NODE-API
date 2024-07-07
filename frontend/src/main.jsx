@@ -22,7 +22,7 @@ const pages = createBrowserRouter([
     children: [
       { path: '/login', element: <Login /> },
       { path: '/newUser', element: <AddUser /> },
-      { path: '/profile', element: <Profile /> },
+      { path: '/profile', element:  <ProtectedRoute><Profile /></ProtectedRoute> },
       { path: '/editUsuario/:id', element: <ProtectedRoute><UpdateUser /></ProtectedRoute> },
       { path: '/', element: <ProtectedRoute><ListAtividades /></ProtectedRoute> },
       { path: '/editAtividade/:id', element: <ProtectedRoute><EditAtividade /></ProtectedRoute> },
