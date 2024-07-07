@@ -2,9 +2,10 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import axios from '../../../api/axiosConfig.js';
 import LogOut from '../../../components/logout/LogOut.jsx';
-import DeleteUser from '../../../components/deleteuser/deleteUser.jsx';
+import Delete from '../../../components/delete/Delete.jsx';
 import styles from './profile.module.css';
 import { MdModeEdit } from "react-icons/md";
+import ErrorComponente from '../../../components/error/ErrorComponente.jsx';
 
 const UserProfile = () => {
     const [user, setUser] = useState({});
@@ -35,7 +36,7 @@ const UserProfile = () => {
     };
 
     if (error) {
-        return <p>{error}</p>;
+        return  <ErrorComponente error={error} />
     }
 
     return (
@@ -46,7 +47,7 @@ const UserProfile = () => {
                 <p><strong>Email:</strong> {user.email}</p>
             </div>
             <div className={styles.buttons}>
-                <DeleteUser userId={userId} onDelete={deleteUser} />
+                <Delete id={userId} onDelete={deleteUser} />
                 <Link to={`/editUsuario/${user.id}`}><MdModeEdit /></Link>
             </div>
                 <LogOut />

@@ -1,13 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import axios from '../../../api/axiosConfig.js';
-import DeleteCategory from '../../../components/deletecategoria/deleteCategoria.jsx';
+import Delete from '../../../components/delete/Delete.jsx';
 import styles from './listcategoria.module.css';
 import { MdModeEdit } from "react-icons/md";
+import ErrorComponente from '../../../components/error/ErrorComponente.jsx';
 
 const ListCategories = () => {
     const [categorias, setCategorias] = useState([]);
-    const userId = localStorage.getItem('userId');
+    const [error, setError] = useState('');
 
     useEffect(() => {
         const fetchCategories = async () => {
@@ -15,6 +16,7 @@ const ListCategories = () => {
                 const response = await axios.get(`/categoria`);
                 setCategorias(response.data);
             } catch (error) {
+                setError('Erro ao carregar categorias. Por favor, tente novamente mais tarde.');
                 console.error(error.response?.data || error.message);
             }
         };
@@ -32,6 +34,11 @@ const ListCategories = () => {
         }
     };
 
+    if (error) {
+        return  <ErrorComponente error={error} />
+    }
+    
+    
     return (
         <div className={styles.containerList}>
             <div className={styles.containerTitle}>
@@ -41,12 +48,12 @@ const ListCategories = () => {
                 
             </div>
             <ul>
-                {categorias.map(category => (
-                    <li key={category.id}>
-                        {category.description}
+                {categorias.map(categoria => (
+                    <li key={categoria.id}>
+                        {categoria.description}
                         <div className={styles.buttons}>
-                            <DeleteCategory id={category.id} onDelete={deleteCategoria} />
-                            <Link to={`/editCategoria/${category.id}`}>
+                            <Delete id={categoria.id} onDelete={deleteCategoria} />
+                            <Link to={`/editCategoria/${categoria.id}`}>
                                 <MdModeEdit />
                             </Link>
                         </div>

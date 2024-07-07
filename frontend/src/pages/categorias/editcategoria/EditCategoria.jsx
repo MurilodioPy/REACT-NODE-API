@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from '../../../api/axiosConfig';
 import styles from './editcategoria.module.css';
-
+import ErrorComponente from '../../../components/error/ErrorComponente';
 export default function EditCategory() {
     const { id } = useParams();
     const [categoria, setCategoria] = useState({
@@ -39,10 +39,13 @@ export default function EditCategory() {
         }
     };
 
+    if (error) {
+        return  <ErrorComponente error={error} />
+    }
+
     return (
         <div className={styles.container}>
             <h2>Editar Categoria</h2>
-            {error && <p>{error}</p>}
             <form onSubmit={handleSubmit}>
                 <div className='labelContainer'>
                     <label>Descrição:</label>

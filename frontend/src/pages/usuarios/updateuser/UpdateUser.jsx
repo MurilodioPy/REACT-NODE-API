@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import axios from '../../../api/axiosConfig.js';
 import styles from './update.module.css';
+import ErrorComponente from '../../../components/error/ErrorComponente.jsx';
 
 export default function UpdateUser() {
     const navigate = useNavigate();
@@ -43,12 +44,15 @@ export default function UpdateUser() {
         }
     };
 
+    if (error) {
+       return <ErrorComponente error={error} />
+    }
+
     return (
         <div className={styles.container}>
 
         <form onSubmit={handleSubmit} className={styles.updateForm}>
             <h2>Atualizar Perfil</h2>
-            {error && <p>{error}</p>}
             <div className='labelContainer'>
                 <label>Nome</label>
                 <input

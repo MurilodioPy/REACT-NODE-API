@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import styles from './listatividade.module.css';
-import DeleteAtividade from '../../../components/deleteatividade/deleteAtividade';
+import Delete from '../../../components/delete/Delete.jsx';
 import axios from '../../../api/axiosConfig.js';
 import { MdModeEdit } from "react-icons/md";
 
@@ -41,9 +41,13 @@ export default function Listatividades() {
     return <p>Carregando atividades...</p>;
   }
 
-  if (error) {
-    return <p>{error}</p>;
-  }
+if (error) {
+    return (
+        <div className='error_card'>
+            <p>{error}</p>
+        </div>
+    );
+}
 
   return (
     <div className={styles.containerList}>
@@ -57,7 +61,7 @@ export default function Listatividades() {
           <li key={atividade.id}>
             {atividade.description}
             <div className={styles.buttons}>
-              <DeleteAtividade id={atividade.id} onDelete={deleteAtividade} />
+              <Delete id={atividade.id} onDelete={deleteAtividade} />
               <Link to={`/editAtividade/${atividade.id}`}><MdModeEdit/></Link>
             </div>
           </li>

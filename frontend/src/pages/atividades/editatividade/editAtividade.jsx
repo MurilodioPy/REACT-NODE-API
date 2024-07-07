@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from '../../../api/axiosConfig.js';
 import styles from './editatividade.module.css';
+import ErrorComponente from '../../../components/error/ErrorComponente.jsx';
 
 export default function EditAtividades(){
     const { id } = useParams();
@@ -40,10 +41,13 @@ export default function EditAtividades(){
         }
     };
 
+    if (error) {
+        return <ErrorComponente error={error} />
+    }
+
     return (
         <div className={styles.editContainer}>
             <h2>Editar Atividade</h2>
-            {error && <p>{error}</p>}
             <form onSubmit={handleSubmit}>
                 <div className='labelContainer'>
                     <label>Descrição da atividade:</label>

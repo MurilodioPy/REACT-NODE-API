@@ -2,12 +2,13 @@ import { Link, Navigate } from 'react-router-dom';
 import React, { useState } from 'react';
 import axios from '../../../api/axiosConfig';
 import styles from './login.module.css'
+import ErrorComponente from '../../../components/error/ErrorComponente';
 
 const Login = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [isLoggedIn, setIsLoggedIn] = useState(false); // Estado para indicar se o usuário está logado
-
+    const [error, setError] = useState('');
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
@@ -19,12 +20,17 @@ const Login = () => {
             localStorage.setItem('userId', response.data.userId); // Armazena o token no localStorage
             setIsLoggedIn(true); // Atualiza o estado para indicar que o login foi bem-sucedido
         } catch (error) {
+            setError(error.response?.data || error.message); // Exibir o erro ao usuário
             console.error(error.response?.data || error.message);
         }
     };
 
     if (isLoggedIn) {
         return <Navigate to="/" replace />; // Redireciona para a rota raiz após login bem-sucedido
+    }
+
+    if (error) {
+        return <ErrorComponente error={error} />
     }
 
     return (

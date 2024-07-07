@@ -2,12 +2,14 @@ import { Link } from "react-router-dom";
 import React, { useState } from "react";
 import axios from "../../../api/axiosConfig";
 import styles from "./adduser.module.css";
+import ErrorComponente from "../../../components/error/ErrorComponente";
 
 const Register = () => {
     const [name, setName] = useState("");
     const [lastName, setLastName] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const [error, setError] = useState("");
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -20,12 +22,16 @@ const Register = () => {
             });
             console.log(response.data); // Exibir a resposta do backend
         } catch (error) {
+            setError(error.response?.data || error.message); // Exibir o erro ao usuário
             console.error(error.response?.data || error.message);
         }
     };
 
-    return (
+    if (error) {
+        return  <ErrorComponente error={error} />
+    }
 
+    return (
         <div className={styles.container}>
             <h2>Registrar</h2>
             <form onSubmit={handleSubmit}>

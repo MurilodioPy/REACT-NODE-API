@@ -1,10 +1,10 @@
 import React from 'react';
 
-const DeleteUser = ({ userId, onDelete }) => {
+const DeleteUser = ({ id , onDelete }) => {
     return (
         <div className="modal">
             <div className="modal-content">
-                <button onClick={() => onDelete(userId)}>Excluir Conta</button>
+                <button onClick={() => onDelete(id)}>Excluir</button>
             </div>
         </div>
     );
