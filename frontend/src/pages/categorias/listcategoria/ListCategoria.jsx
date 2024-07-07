@@ -32,14 +32,22 @@ const ListCategories = () => {
 
     return (
         <div className={styles.containerList}>
-            <h1>Categorias</h1>
-            <Link to="/addCategoria">Adicionar Categoria</Link>
+            <div className={styles.containerTitle}>
+                <h2>Categorias</h2>
+                <button>
+                    <Link to="/addCategoria">Adicionar Categoria</Link>
+                </button>
+            </div>
             <ul>
                 {categorias.map(category => (
                     <li key={category.id}>
                         {category.description}
-                        <Link to={`/editCategoria/${category.id}`}>Editar</Link>
-                        <DeleteCategory id={category.id} onDelete={deleteCategoria} />
+                        <div className={styles.buttons}>
+                            <button>
+                                <Link to={`/editCategoria/${category.id}`}>Editar</Link>
+                            </button>
+                            <DeleteCategory id={category.id} onDelete={deleteCategoria} />
+                        </div>
                     </li>
                 ))}
             </ul>

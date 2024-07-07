@@ -1,9 +1,25 @@
 .container {
+    display: flex;
+    flex-direction: column;
     padding: 20px;
+    align-items: center;
+    text-align: center;
   }
   
   .profileInfo {
+    text-align: left;
     margin-bottom: 20px;
+    border: 1px solid #00AFEF;
+    border-radius: 15px;
+    padding: 20px;
+    width: 60%;
+  }
+
+  .buttons{
+    display: flex;
+    gap: 2rem;
+    justify-content: center;
+    width: 100%;
   }
   
   .profileInfo p {

@@ -36,16 +36,20 @@ const UserProfile = () => {
     if (error) {
         return <p>{error}</p>;
     }
-    
+
     return (
         <div className={styles.container}>
-            <h1>Perfil do Usuário</h1>
+            <h2>Perfil do Usuário</h2>
             <div className={styles.profileInfo}>
-                <p><strong>Nome :</strong> {user.name} {user.lastName}</p>
+                <p><strong>Nome:</strong> {user.name} {user.lastName}</p>
                 <p><strong>Email:</strong> {user.email}</p>
             </div>
-            <Link to={`/editUsuario/${user.id}`}>Editar</Link>
-            <DeleteUser userId={userId} onDelete={deleteUser} />
+            <div className={styles.buttons}>
+                <button>
+                    <Link to={`/editUsuario/${user.id}`}>Editar</Link>
+                </button>
+                <DeleteUser userId={userId} onDelete={deleteUser} />
+            </div>
         </div>
     );
 };

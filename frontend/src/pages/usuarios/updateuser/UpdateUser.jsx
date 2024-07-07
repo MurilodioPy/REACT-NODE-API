@@ -42,10 +42,12 @@ export default function UpdateUser() {
     };
 
     return (
+        <div className={styles.container}>
+
         <form onSubmit={handleSubmit} className={styles.updateForm}>
             <h2>Atualizar Perfil</h2>
             {error && <p>{error}</p>}
-            <div>
+            <div className='labelContainer'>
                 <label>Nome</label>
                 <input
                     type="text"
@@ -53,29 +55,30 @@ export default function UpdateUser() {
                     name='name'
                     value={usuario.name}
                     onChange={handleChange}
-                />
+                    />
             </div>
-            <div>
-                <label>Nome</label>
+            <div className='labelContainer'>
+                <label>Sobrenome</label>
                 <input
                     type="text"
                     placeholder="Sobrenome"
                     name='lastName'
                     value={usuario.lastName}
                     onChange={handleChange}
-                />
+                    />
             </div>
-            <div>
-                <label>Nome</label>
+            <div className='labelContainer'>
+                <label>Email</label>
                 <input
                     type="text"
                     placeholder="Email"
                     name='email'
                     value={usuario.email}
                     onChange={handleChange}
-                />
-                <button type="submit">Atualizar</button>
+                    />
             </div>
+            <button type="submit">Atualizar</button>
         </form>
+        </div>
     );
 };

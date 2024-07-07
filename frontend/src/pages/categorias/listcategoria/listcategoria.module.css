@@ -1,6 +1,22 @@
 .containerList {
     display: flex;
-    flex-wrap: wrap;
+    text-align: center;
+    align-items: center;
+    flex-direction: column;
     justify-content: center;
     margin-top: 20px;
+}
+
+.containerTitle{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: .5rem;
+}
+
+.buttons{
+    display: flex;
+    gap: 2rem;
+    justify-content: center;
+    width: 100%;
 }

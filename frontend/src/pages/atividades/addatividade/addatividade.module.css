@@ -1,13 +1,15 @@
-.addatividadeContainer{
+.container {
     display: flex;
     flex-direction: column;
+    padding: 20px;
     align-items: center;
-    justify-content: center;
-    margin-top: 50px;
+    text-align: center;
 }
 
-.labelItens{
-    display: flex;
-    justify-content: space-between;
-    gap: 1rem;
-}
+/* .atividadeInfo{
+    text-align: center;
+    border: 1px solid #00AFEF;
+    border-radius: 15px;
+    padding: 10px;
+    width: 60%;
+} */

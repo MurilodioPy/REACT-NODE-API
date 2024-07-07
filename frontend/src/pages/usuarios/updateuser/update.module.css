@@ -1,23 +1,8 @@
-.updateForm {
-    margin-bottom: 20px;
-  }
-  
-  .updateForm h2 {
-    margin-bottom: 10px;
-  }
-  
-  .updateForm input {
-    display: block;
-    margin-bottom: 10px;
-    padding: 5px;
-  }
-  
-  .updateForm button {
-    padding: 5px 10px;
-    background-color: #007bff;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-  }
+.container {
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  align-items: center;
+  text-align: center;
+}
   

@@ -45,15 +45,21 @@ export default function Listatividades() {
 
   return (
     <div className={styles.containerList}>
-      <h1>Atividades</h1>
-      <Link to="/addAtividade">Adicionar Atividade</Link>
+      <h2>Atividades</h2>
+      <button>
+        <Link to="/addAtividade">Adicionar Atividade</Link>
+      </button>
       <ul>
       {Array.isArray(atividades) ? (
         atividades.map(atividade => (
           <li key={atividade.id}>
             {atividade.description}
-            <Link to={`/editAtividade/${atividade.id}`}>Editar</Link>
-            <DeleteAtividade id={atividade.id} onDelete={deleteAtividade} />
+            <div className={styles.buttons}>
+              <button>
+                <Link to={`/editAtividade/${atividade.id}`}>Editar</Link>
+              </button>
+              <DeleteAtividade id={atividade.id} onDelete={deleteAtividade} />
+            </div>
           </li>
         ))
       ) : (
