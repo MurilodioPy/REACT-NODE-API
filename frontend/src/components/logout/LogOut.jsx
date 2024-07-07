@@ -16,9 +16,10 @@ const Logout = () => {
         return <Navigate to="/login" replace />; // Redireciona para a rota raiz após login bem-sucedido
     }else{
         return (
-            <a onClick={handleLogout}>
+            <button onClick={handleLogout}>
+                LogOut
                 <LuLogOut />
-            </a>
+            </button>
         );
     }
 

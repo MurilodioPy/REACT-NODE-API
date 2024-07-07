@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { Navigate, Link } from 'react-router-dom';
 import axios from '../../../api/axiosConfig.js';
-// import UpdateUser from './UpdateUser';
+import LogOut from '../../../components/logout/LogOut.jsx';
 import DeleteUser from '../../../components/deleteuser/deleteUser.jsx';
 import styles from './profile.module.css';
 
 const UserProfile = () => {
     const [user, setUser] = useState({});
-    const userId = localStorage.getItem('userId'); 
+    const userId = localStorage.getItem('userId');
     const [error, setError] = useState('');
 
     useEffect(() => {
@@ -25,11 +25,11 @@ const UserProfile = () => {
 
     const deleteUser = async (id) => {
         try {
-          await axios.delete(`/usuario/${id}`);
-          setUsuario({});
+            await axios.delete(`/usuario/${id}`);
+            setUsuario({});
         } catch (error) {
-          setError('Erro ao deletar usuário. Por favor, tente novamente mais tarde.');
-          console.error('Erro ao deletar usuário:', error);
+            setError('Erro ao deletar usuário. Por favor, tente novamente mais tarde.');
+            console.error('Erro ao deletar usuário:', error);
         }
     };
 
@@ -50,6 +50,7 @@ const UserProfile = () => {
                 </button>
                 <DeleteUser userId={userId} onDelete={deleteUser} />
             </div>
+                <LogOut />
         </div>
     );
 };
