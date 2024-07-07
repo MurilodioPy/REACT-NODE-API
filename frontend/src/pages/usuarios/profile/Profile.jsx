@@ -6,11 +6,14 @@ import Delete from '../../../components/delete/Delete.jsx';
 import styles from './profile.module.css';
 import { MdModeEdit } from "react-icons/md";
 import ErrorComponente from '../../../components/error/ErrorComponente.jsx';
+import { useNavigate } from 'react-router-dom';
 
 const UserProfile = () => {
     const [user, setUser] = useState({});
     const userId = localStorage.getItem('userId');
     const [error, setError] = useState('');
+    const navigate = useNavigate();
+    
 
     useEffect(() => {
         const fetchUser = async () => {
@@ -28,7 +31,8 @@ const UserProfile = () => {
     const deleteUser = async (id) => {
         try {
             await axios.delete(`/usuario/${id}`);
-            setUsuario({});
+            localStorage.clear();
+            navigate('/login')
         } catch (error) {
             setError('Erro ao deletar usuário. Por favor, tente novamente mais tarde.');
             console.error('Erro ao deletar usuário:', error);

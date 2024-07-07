@@ -3,13 +3,14 @@ import { useParams } from 'react-router-dom';
 import axios from '../../../api/axiosConfig.js';
 import styles from './editatividade.module.css';
 import ErrorComponente from '../../../components/error/ErrorComponente.jsx';
+import { useNavigate } from 'react-router-dom';
 
 export default function EditAtividades(){
     const { id } = useParams();
     const [atividade, setAtividade] = useState({
         description: ''
     });
-
+    const navigate = useNavigate();
     const [error, setError] = useState('');
 
     useEffect(() => {
@@ -35,6 +36,7 @@ export default function EditAtividades(){
         try {
             const response = await axios.put(`/atividade/${id}`, atividade);
             console.log('Atividade atualizada com sucesso:', response.data);
+            navigate('/atividades')
         } catch (error) {
             console.error('Erro ao atualizar o atividade:', error);
             setError('Erro ao atualizar a atividade. Por favor, tente novamente mais tarde.');

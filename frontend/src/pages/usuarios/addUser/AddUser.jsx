@@ -3,13 +3,14 @@ import React, { useState } from "react";
 import axios from "../../../api/axiosConfig";
 import styles from "./adduser.module.css";
 import ErrorComponente from "../../../components/error/ErrorComponente";
-
+import { useNavigate } from "react-router-dom";
 const Register = () => {
     const [name, setName] = useState("");
     const [lastName, setLastName] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [error, setError] = useState("");
+    const navigate = useNavigate();
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -20,7 +21,9 @@ const Register = () => {
                 email,
                 password,
             });
-            console.log(response.data); // Exibir a resposta do backend
+
+            console.log(response.data); 
+            navigate("/login");
         } catch (error) {
             setError("Erro ao inserir usuário! Usuário já existe!"); // Exibir o erro ao usuário
             console.error(error.response?.data || error.message);

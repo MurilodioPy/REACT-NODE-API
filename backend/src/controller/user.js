@@ -7,7 +7,10 @@ export const getUserById = async (req, res) => {
   try {
     const { id } = req.params;
     const user = await prisma.user.findUnique({
-      where: { id: parseInt(id) },
+      where: { 
+        id: parseInt(id),
+        deletedAt: null,
+       },
     });
     res.status(OK).send(user);
   } catch (error) {
@@ -41,7 +44,8 @@ const deleteEntity = async (req, res) => {
   const { id } = req.params;
 
   try {
-    await prisma.user.delete({
+    await prisma.user.update({
+      data: { deletedAt: new Date()},
       where: { id: parseInt(id) },
     });
 

@@ -16,7 +16,6 @@ h2{
 
 li{
   color: #EEEEEE;
-  list-style: none;
   display: flex;
   gap: 1rem;
   flex-direction: column;
@@ -31,6 +30,7 @@ li{
 }
 
 body{
+  width: 100%;
   background-color: #222;
   text-align: center;
   align-items: center;
@@ -56,6 +56,7 @@ p{
 
 .error_card{
   display: flex;
+  flex-direction: column;
   text-align: center;
   align-items: center;
   justify-content: center;
@@ -103,7 +104,13 @@ input{
   width: 300px;
   height: 30px;
   border: none;
+  text-transform: capitalize;
   border-bottom: 1px solid #00AFEF;
+}
+
+label, input, select {
+  font-size: large;
+  font-weight: bold;
 }
 
 select{
@@ -116,4 +123,10 @@ select{
 
 #root{
   font-size: x-large;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+
 }

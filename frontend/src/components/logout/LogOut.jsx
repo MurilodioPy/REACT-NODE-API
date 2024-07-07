@@ -17,7 +17,6 @@ const Logout = () => {
     }else{
         return (
             <button onClick={handleLogout}>
-                LogOut
                 <LuLogOut />
             </button>
         );

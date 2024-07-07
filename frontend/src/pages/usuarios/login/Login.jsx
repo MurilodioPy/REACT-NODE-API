@@ -20,7 +20,7 @@ const Login = () => {
             localStorage.setItem('userId', response.data.userId); // Armazena o token no localStorage
             setIsLoggedIn(true); // Atualiza o estado para indicar que o login foi bem-sucedido
         } catch (error) {
-            setError("Erro ao fazer login!"); // Exibir o erro ao usuário
+            setError("Erro ao fazer login! Crie uma conta!"); // Exibir o erro ao usuário
             console.error(error.response?.data || error.message);
         }
     };
@@ -35,6 +35,7 @@ const Login = () => {
 
     return (
         <div className={styles.container}>
+            <h2>Login</h2>
             <form onSubmit={handleSubmit}>
                 <input
                     type="email"
